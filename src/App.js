@@ -1,10 +1,12 @@
-import './App.css';
-import List from './Layouts/Card/List';
+import List from './Layouts/List';
+import 'bootswatch/dist/lux/bootstrap.min.css'
 function App() {
   return (
-    <div className="App">
-      <List></List>
-    </div>
+    <main className='bg-dark'>
+      <div className='container'>
+        <List />
+      </div>
+    </main>
   );
 }
 
