@@ -1,36 +1,60 @@
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState } from 'react'
 import Card from '../Components/Card/Card'
 
 const List = () => {
-    const API='http://www.omdbapi.com/?i=tt3896198&apikey=6ebeb0ba'
-    const [movie, setMovie] = useState({
-        data: [],
-        loading: true,
-        searchTerm: "",
-        error: "",
-      });
-    useEffect(()=>{
-        fetchdata();
-    },[])
-    const fetchdata= async () => {
-        const res = await fetch(`${API}&s=batman`);
-        const resJSON = await res.json();
+  const API = window.env.API
+  const [movie, setMovie] = useState({
+    data: [],
+    loading: true,
+    searchTerm: "",
+    error: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (movie.searchTerm === "") {
+      return setMovie({ ...movie, error: "Please write a valid text" });
+    }
+
+    const response = await fetch(`${API}&s=${movie.searchTerm}`);
+    const data = await response.json();
+    console.log(data)
+    if (!data.Search) {
+      return setMovie({ ...movie, error: "There are no results." });
+    }
+
+    return setMovie({
+      data: data.Search,
+      searchTerm: "",
+      error: "",
+      loading:false,
+    });
+  };
+  
+  return (
     
-        if (resJSON) {
-          setMovie({
-            data: resJSON.Search,
-            loading: false,
-            error: "",
-          });
-        }
-      };
-    return (
-        <div className='row'>
-            {movie.data.map((data) => {
-                return (<Card movie={data} />)
-            })}
+    <Fragment>
+      <div className="row">
+        <div className="col-md-4 offset-md-4 p-4">
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input type="text"
+              className='form-control'
+              placeholder='Search'
+              onChange={(e) => setMovie({ searchTerm: e.target.value })}
+              value={movie.searchTerm}
+              autoFocus />
+          </form>
+          <p className='text-white'>{movie.error ? movie.error : ""}</p>
         </div>
-    )
+      </div>
+      <div className='row pt-2'>
+        {movie.data ? movie.data.map((data, i) => {
+          return (<Card movie={data} key={i} />)
+        }) : ""}
+      </div>
+    </Fragment>
+  )
 }
 
 export default List
