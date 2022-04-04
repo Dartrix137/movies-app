@@ -28,22 +28,29 @@ const List = () => {
       data: data.Search,
       searchTerm: "",
       error: "",
-      loading:false,
+      loading: false,
     });
   };
-  
+
   return (
-    
+
     <Fragment>
       <div className="row">
         <div className="col-md-4 offset-md-4 p-4">
           <form onSubmit={(e) => handleSubmit(e)}>
-            <input type="text"
-              className='form-control'
-              placeholder='Search'
-              onChange={(e) => setMovie({ searchTerm: e.target.value })}
-              value={movie.searchTerm}
-              autoFocus />
+            <div className="input-group col-sm-12">
+              <div className="form-outline">
+                <input type="text"
+                  className='form-control'
+                  placeholder='Search'
+                  onChange={(e) => setMovie({ searchTerm: e.target.value })}
+                  value={movie.searchTerm}
+                  autoFocus />
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
           </form>
           <p className='text-white'>{movie.error ? movie.error : ""}</p>
         </div>
