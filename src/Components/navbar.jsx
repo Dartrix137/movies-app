@@ -5,7 +5,7 @@ const Navbar = () => {
     <nav className="navbar navbar-dark bg-dark border-bottom border-white">
       <div className="container">
         <NavLink className="navbar-brand" to="/">
-          MovieApp
+          MoviesApp
         </NavLink>
       </div>
     </nav>

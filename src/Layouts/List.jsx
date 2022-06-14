@@ -43,7 +43,7 @@ const List = () => {
                   <div className="form-outline">
                     <input type="text"
                       className='form-control'
-                      placeholder='Search'
+                      placeholder='Search by tittle'
                       onChange={(e) => setMovie({ searchTerm: e.target.value })}
                       value={movie.searchTerm}
                       autoFocus />
