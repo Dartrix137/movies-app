@@ -1,5 +1,5 @@
 import List from './Layouts/List';
-import Movieinfo from './pages/Movieinfo';
+import Movieinfo from './pages/movieinfo';
 import Navbar from './Components/navbar';
 import 'bootswatch/dist/lux/bootstrap.min.css'
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
