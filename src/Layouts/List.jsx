@@ -49,7 +49,7 @@ const List = () => {
                       autoFocus />
                   </div>
                   <button type="submit" className="btn btn-primary">
-                    <i class="fa fa-search"></i>
+                    Search
                   </button>
                 </div>
               </form>
